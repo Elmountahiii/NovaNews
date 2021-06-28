@@ -1,0 +1,234 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".view.fragment.DetailFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_arrow_back"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/timeWithCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/mabry_pro_medium"
+            android:text="bla bla bla bla . tech"
+            android:textColor="#FFB1B5CA"
+
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backArrow"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/postTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/mabry_pro_bold"
+            android:textColor="@color/headlinesText"
+            android:textSize="19sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/timeWithCategory"
+            app:layout_constraintTop_toBottomOf="@+id/timeWithCategory"
+            tools:text="this is match to do how and how yu will find it look lik"
+            tools:visibility="visible" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/postTitle"
+            app:layout_constraintStart_toStartOf="@+id/postTitle"
+            app:layout_constraintTop_toBottomOf="@+id/postTitle"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/postImage"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop"
+
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <WebView
+            android:id="@+id/postWebView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commentschip"
+            tools:visibility="visible" />
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/detailShimmerLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/postWebView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shimmer_auto_start="true"
+            tools:visibility="gone">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_collapsing_toolbar_layout" />
+
+                <include layout="@layout/shimmer_webview_content" />
+
+                <include layout="@layout/shimmer_webview_content" />
+
+                <include layout="@layout/shimmer_webview_content" />
+
+                <include layout="@layout/shimmer_webview_content" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <TextView
+            android:id="@+id/AppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mabry_pro_bold"
+            android:text="@string/app_name"
+            android:textColor="@color/headlinesText"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@+id/backArrow"
+            app:layout_constraintTop_toTopOf="@+id/backArrow"
+            tools:visibility="visible" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/commentschip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="see Comments"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/cardView2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            tools:visibility="visible" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/facebookchip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:chipEndPadding="4dp"
+            app:chipIcon="@drawable/ic_facebook"
+            app:chipStartPadding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/commentschip"
+            app:layout_constraintStart_toStartOf="@+id/cardView2"
+            app:layout_constraintTop_toTopOf="@+id/commentschip"
+            app:textEndPadding="0dp"
+            app:textStartPadding="0dp"
+            tools:visibility="visible" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/twitterchip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:chipEndPadding="4dp"
+            app:chipIcon="@drawable/ic_twitter"
+            app:chipStartPadding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/facebookchip"
+            app:layout_constraintStart_toEndOf="@+id/facebookchip"
+            app:layout_constraintTop_toTopOf="@+id/facebookchip"
+            app:textEndPadding="0dp"
+            app:textStartPadding="0dp"
+            tools:visibility="visible" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/emailchip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:chipEndPadding="4dp"
+            app:chipIcon="@drawable/ic_email"
+            app:chipStartPadding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/twitterchip"
+            app:layout_constraintStart_toEndOf="@+id/twitterchip"
+            app:layout_constraintTop_toTopOf="@+id/twitterchip"
+            app:textEndPadding="0dp"
+            app:textStartPadding="0dp"
+            tools:visibility="visible" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/sharechip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            app:chipEndPadding="4dp"
+            app:chipIcon="@drawable/ic_share"
+            app:chipStartPadding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/emailchip"
+            app:layout_constraintEnd_toStartOf="@+id/commentschip"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/emailchip"
+            app:layout_constraintTop_toTopOf="@+id/emailchip"
+            app:textEndPadding="0dp"
+            app:textStartPadding="0dp"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.core.widget.NestedScrollView>

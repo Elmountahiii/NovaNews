@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "625927473610",
+    "project_id": "wordpressapp-484b8",
+    "storage_bucket": "wordpressapp-484b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625927473610:android:20f865bfba96f0f25ae733",
+        "android_client_info": {
+          "package_name": "com.redgunner.novanews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625927473610-eshpgbe4ckl2q4jssjre0sk0fepapg6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOBhD9-lVVpdusB0RrZm8fKorXJrjgenw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625927473610-eshpgbe4ckl2q4jssjre0sk0fepapg6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
