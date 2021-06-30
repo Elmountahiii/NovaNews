@@ -1,10 +1,10 @@
 package com.redgunner.novanews.di
 
 import android.content.Context
+import com.redgunner.novanews.R
 import com.redgunner.novanews.database.builder.LocalPostsDatabaseBuilder
 import com.redgunner.novanews.database.dao.SavedPostsDAO
 import com.redgunner.novanews.network.WordpressApi
-import com.redgunner.novanews.network.WordpressApi.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +23,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideWordPressLink(@ApplicationContext context: Context)=context.getString(R.string.WordpressLink)
+
+
+
+    @Provides
+    @Singleton
     fun  provideOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
@@ -31,8 +37,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder().baseUrl(BASE_URL)
+    fun provideRetrofit(okHttpClient: OkHttpClient,wordpressLink:String): Retrofit =
+        Retrofit.Builder().baseUrl(wordpressLink)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

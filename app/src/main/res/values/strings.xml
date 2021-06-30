@@ -1,7 +1,17 @@
 <resources>
+
+
+    <!--Important -->
+    <string name="WordpressLink">https://www.gamerevolution.com/</string>
+    <!--Important -->
+
+
+    <!--Important -->
+    <string name="InterstitialAdID">ca-app-pub-3940256099942544/8691691433</string>
+    <!--Important -->
+
+
     <string name="app_name">Nova News</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="explore">Explore</string>
     <string name="search">Search</string>
     <string name="latest">Latest :</string>

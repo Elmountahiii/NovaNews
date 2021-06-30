@@ -35,11 +35,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/settingsBackArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:backgroundTint="@color/imageback"
                 android:src="@drawable/ic_arrow_back"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/textView10"

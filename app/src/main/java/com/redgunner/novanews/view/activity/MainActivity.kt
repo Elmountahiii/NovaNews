@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.messaging.FirebaseMessaging
 import com.redgunner.novanews.R
 import com.redgunner.novanews.utils.UserPreferences
@@ -28,8 +29,12 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
 
+
+
         themePreferences()
+        setUpMobileAds()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -69,6 +74,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpFirebase(){
         FirebaseMessaging.getInstance().subscribeToTopic("post")
+
+    }
+
+    private fun setUpMobileAds() {
+        MobileAds.initialize(this)
+
 
     }
 }

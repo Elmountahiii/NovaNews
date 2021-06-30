@@ -4,6 +4,8 @@
 
 
     <color name="StatusBarColor">#121212</color>
+    <color name="imageback">#121212</color>
+
 
     <color name="headlinesText">@color/white</color>
 

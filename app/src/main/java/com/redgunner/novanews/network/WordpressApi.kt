@@ -9,13 +9,6 @@ import retrofit2.http.Query
 
 interface WordpressApi {
 
-    companion object {
-        //http://35.180.124.173/
-        const val BASE_URL = "https://www.gamerevolution.com/"
-
-
-    }
-
 
     @GET("/wp-json/wp/v2/posts")
     suspend fun getPostsByCategories(

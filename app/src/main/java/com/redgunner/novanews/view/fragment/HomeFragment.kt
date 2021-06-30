@@ -71,31 +71,42 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         is LoadState.Loading -> {
 
 
-                            PostList.isVisible = false
-                            list_shimmer_view_container.isVisible = true
+
+                            if(list_shimmer_view_container!=null){
+                                PostList.isVisible = false
+                                list_shimmer_view_container.isVisible = true
 
 
-                            list_shimmer_view_container.startShimmer()
+                                list_shimmer_view_container.startShimmer()
+                            }
+
 
                         }
                         is LoadState.NotLoading -> {
+                            if (list_shimmer_view_container!=null){
 
-                            list_shimmer_view_container.stopShimmer()
-                            list_shimmer_view_container.isVisible = false
-                            PostList.isVisible = true
+                                list_shimmer_view_container.stopShimmer()
+                                list_shimmer_view_container.isVisible = false
+                                PostList.isVisible = true
+                            }
+
+
 
 
 
                         }
                         is LoadState.Error -> {
-                            list_shimmer_view_container.stopShimmer()
-                            list_shimmer_view_container.isVisible = false
-                            tablayout_shimmer_view_container.stopShimmer()
-                            tablayout_shimmer_view_container.isVisible=false
-                            textView3.isVisible=false
-                            emptyImage.isVisible=true
-                            EmptyText.isVisible=true
-                            textView9.isVisible=true
+                            if(list_shimmer_view_container!=null){
+                                list_shimmer_view_container.stopShimmer()
+                                list_shimmer_view_container.isVisible = false
+                                tablayout_shimmer_view_container.stopShimmer()
+                                tablayout_shimmer_view_container.isVisible=false
+                                textView3.isVisible=false
+                                emptyImage.isVisible=true
+                                EmptyText.isVisible=true
+                                textView9.isVisible=true
+
+                            }
 
 
 
