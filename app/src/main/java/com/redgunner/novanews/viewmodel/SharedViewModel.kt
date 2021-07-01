@@ -2,7 +2,6 @@ package com.redgunner.novanews.viewmodel
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.redgunner.novanews.models.Local.LocalPost
 import com.redgunner.novanews.models.category.Categories
 import com.redgunner.novanews.models.comment.Comments
 import com.redgunner.novanews.models.post.Post
@@ -63,7 +62,6 @@ class SharedViewModel @Inject constructor(private val wordPressRepository: WordP
     val searchList = _searchEventChannel.receiveAsFlow()
 
 
-    val savedLocalPost=MutableLiveData<LocalPost>()
 
     init {
 
@@ -166,13 +164,6 @@ class SharedViewModel @Inject constructor(private val wordPressRepository: WordP
 
             }
 
-        }
-    }
-
-    fun getSavedPost(postId: Int) {
-        viewModelScope.launch {
-
-           // savedLocalPost.value=wordPressRepository.getSavedPost(postId)
         }
     }
 

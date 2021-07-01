@@ -1,9 +1,9 @@
 package com.redgunner.novanews.adapter
 
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +40,7 @@ class CommentsListAdapter : ListAdapter<Comments, CommentsListAdapter.CommentsVi
 
             author.text=comment.author_name
             date.text=comment.date
-            content.text=Html.fromHtml(Html.fromHtml(comment.content).toString())
+            content.text=HtmlCompat.fromHtml(comment.content,HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
 
 
         }
@@ -48,7 +48,7 @@ class CommentsListAdapter : ListAdapter<Comments, CommentsListAdapter.CommentsVi
 
     }
 
-    class CommentsComparator(): DiffUtil.ItemCallback<Comments>(){
+    class CommentsComparator : DiffUtil.ItemCallback<Comments>(){
         override fun areItemsTheSame(oldItem: Comments, newItem: Comments): Boolean {
             return true
         }

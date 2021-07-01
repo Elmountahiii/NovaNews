@@ -1,60 +1,66 @@
 package com.redgunner.novanews.view.fragment
 
 
-import kotlinx.coroutines.launch
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.redgunner.novanews.R
-import kotlinx.coroutines.delay
 
 
 class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
-    private lateinit var mInterstitialAd : InterstitialAd
-
+    private var mInterstitialAd: InterstitialAd? = null
+    private val adRequest = AdRequest.Builder().build()
 
 
     override fun onStart() {
         super.onStart()
 
-       /* lifecycleScope.launchWhenStarted {
-
-            delay(2000)
-            findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
-        }*/
-
         setUpInterstitialAd()
     }
 
 
-private fun setUpInterstitialAd(){
-
-    mInterstitialAd= InterstitialAd(context)
-    mInterstitialAd.adUnitId = getString(R.string.InterstitialAdID)
+    private fun setUpInterstitialAd() {
 
 
-    val adBuilder=AdRequest.Builder().build()
-    mInterstitialAd.loadAd(adBuilder)
-    mInterstitialAd.adListener= object : AdListener() {
+        InterstitialAd.load(requireContext(), getString(R.string.InterstitialAdID), adRequest,
+            object : InterstitialAdLoadCallback() {
 
-        override fun onAdLoaded() {
-            super.onAdLoaded()
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                    findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
 
-            mInterstitialAd.show()
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                    mInterstitialAd!!.show(requireActivity())
+                    mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
+                        }
+
+                        override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                            findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
+
+                        }
+
+                        override fun onAdShowedFullScreenContent() {
+                            mInterstitialAd = null
+                        }
+                    }
 
 
-        }
-
-        override fun onAdClosed() {
-            super.onAdClosed()
-            findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
+                }
 
 
-        }
+            })
+
+
     }
-}
 }

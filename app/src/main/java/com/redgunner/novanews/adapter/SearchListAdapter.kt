@@ -3,10 +3,10 @@ package com.redgunner.novanews.adapter
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +16,7 @@ import com.redgunner.novanews.models.post.Post
 import com.redgunner.novanews.state.PostClickState
 import kotlinx.android.synthetic.main.post_view_holder_layout.view.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 class SearchListAdapter(val postClick: (PostClickState) -> Unit) :
     ListAdapter<Post, SearchListAdapter.SearchViewHolder>(SearchComparator()) {
@@ -33,12 +34,12 @@ class SearchListAdapter(val postClick: (PostClickState) -> Unit) :
         init {
 
             image.setOnClickListener {view ->
-                getItem(adapterPosition)?.let { post -> postClick(PostClickState.NormalClick(post.id)) }
+                getItem(absoluteAdapterPosition)?.let { post -> postClick(PostClickState.NormalClick(post.id)) }
             }
 
 
             saved.setOnClickListener {
-                getItem(adapterPosition)?.let { post -> postClick(PostClickState.SavedClick(post)) }
+                getItem(absoluteAdapterPosition)?.let { post -> postClick(PostClickState.SavedClick(post)) }
 
             }
 
@@ -60,15 +61,15 @@ class SearchListAdapter(val postClick: (PostClickState) -> Unit) :
 
             }
 
-            title.text = Html.fromHtml(Html.fromHtml(post.title.rendered).toString())
+            title.text = HtmlCompat.fromHtml(post.title.rendered, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
 
 
             category.text = post._embedded.wp_Term[0][0].name
 
 
-            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-            val formatter = SimpleDateFormat("dd.MM.yyyy")
-            time.text = formatter.format(parser.parse(post.date))
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            val formatter = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            time.text = formatter.format(parser.parse(post.date)!!)
 
 
         }
@@ -77,7 +78,7 @@ class SearchListAdapter(val postClick: (PostClickState) -> Unit) :
     }
 
 
-    class SearchComparator() : DiffUtil.ItemCallback<Post>() {
+    class SearchComparator : DiffUtil.ItemCallback<Post>() {
         override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
             return true
         }

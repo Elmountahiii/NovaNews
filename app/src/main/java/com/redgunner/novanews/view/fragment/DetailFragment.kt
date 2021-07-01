@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -199,7 +200,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
 
-    @SuppressLint("SimpleDateFormat")
     private fun showPost(post: Post) {
 
 
@@ -232,12 +232,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
 
         postTitle.text = Html.fromHtml(Html.fromHtml(post.title.rendered).toString())
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        val formatter = SimpleDateFormat("dd.MM.yyyy")
-        val time = formatter.format(parser.parse(post.date))
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val time = formatter.format(parser.parse(post.date)!!)
+        val category=post._embedded.wp_Term[0][0].name
+        val all ="$time .$category"
 
 
-        timeWithCategory.text = "$time . ${post._embedded.wp_Term[0][0].name}"
+        timeWithCategory.text = all
     }
 
 
@@ -318,7 +320,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     (activity!!.window.decorView as FrameLayout).removeView(mCustomView)
 
                     this.mCustomView = null
-                    activity!!.window.decorView.setSystemUiVisibility(this.mOriginalSystemUiVisibility)
+                    activity!!.window.decorView.systemUiVisibility = this.mOriginalSystemUiVisibility
                     activity!!.requestedOrientation = this.mOriginalOrientation
                     this.mCustomViewCallback?.onCustomViewHidden()
                     this.mCustomViewCallback = null
@@ -337,7 +339,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
                     this.mCustomView = view
                     this.mOriginalSystemUiVisibility =
-                        activity?.window?.decorView!!.getSystemUiVisibility()
+                        activity?.window?.decorView!!.systemUiVisibility
                     this.mOriginalOrientation = activity!!.requestedOrientation
                     this.mCustomViewCallback = callback
 
@@ -345,8 +347,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                         mCustomView,
                         FrameLayout.LayoutParams(-1, -1)
                     )
-                    activity!!.window.decorView
-                        .setSystemUiVisibility(3846 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+                    activity!!.window.decorView.systemUiVisibility = 3846 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
 
                 }

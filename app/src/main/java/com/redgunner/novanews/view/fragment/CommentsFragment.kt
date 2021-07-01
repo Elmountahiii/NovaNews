@@ -1,6 +1,5 @@
 package com.redgunner.novanews.view.fragment
 
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels

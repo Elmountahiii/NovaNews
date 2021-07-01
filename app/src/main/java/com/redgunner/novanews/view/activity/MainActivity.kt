@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.asLiveData
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.messaging.FirebaseMessaging
@@ -19,7 +18,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: SharedViewModel by viewModels()
 
     @Inject
     lateinit var userPreferences: UserPreferences
@@ -27,9 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
-
-
 
         themePreferences()
         setUpMobileAds()
@@ -43,12 +38,6 @@ class MainActivity : AppCompatActivity() {
         if (bundle!=null){
             findNavController(R.id.NevHostFragment).navigate(R.id.detailFragment,bundle)
         }
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
 
     }
 

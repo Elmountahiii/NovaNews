@@ -5,8 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.asLiveData
 import com.redgunner.novanews.utils.Constants
 import dagger.hilt.android.HiltAndroidApp
 

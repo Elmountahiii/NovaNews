@@ -1,7 +1,6 @@
 package com.redgunner.novanews.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
